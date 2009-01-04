@@ -3,7 +3,7 @@ Requirements
 * Java JDK 1.5 - http://java.sun.com/javase/downloads/index_jdk5.jsp
 * log4j >= 1.2.15 - http://logging.apache.org/log4j/
 * Maven2 2.0.x - http://maven.apache.org/
-
+* Spring 2.5 - http://www.springsource.org/
 
 References
 ==========

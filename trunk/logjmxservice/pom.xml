@@ -33,14 +33,20 @@ http://maven.apache.org/maven-v4_0_0.xsd">
          <source>1.5</source>  
          <target>1.5</target>  
        </configuration>  
-     </plugin>  
+     </plugin>
+     <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <configuration>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
    </plugins>
-    <resources>
-      <resource>
-        <directory>src/main/resources</directory>
-      </resource>
-    </resources>
-
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+      </testResource>
+    </testResources>
   	<filters>
   	</filters>
   	<extensions>
