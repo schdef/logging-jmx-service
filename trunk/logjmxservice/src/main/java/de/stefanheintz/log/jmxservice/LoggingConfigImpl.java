@@ -101,7 +101,7 @@ public class LoggingConfigImpl implements LoggingConfig {
 	    PrintWriter pw = new PrintWriter(sw);
 	    PropertyPrinter pp = new PropertyPrinter(pw);
 	    pp.print(pw);
-	    System.out.println(sw.toString());
+//	    System.out.println(sw.toString());
 	    return sw.toString();
 	}
 
