@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- Service to set the log level of a class. -->
+    <bean id="loggingMBean" class="de.stefanheintz.log.jmxservice.LoggingConfigImpl"/>
+	<bean id="exporterLogConfig" class="org.springframework.jmx.export.MBeanExporter">
+		<property name="beans">
+			<map>
+				<entry key="de.stefanheintz.log:jmxservice=loggingConfiguration" value-ref="loggingMBean" />
+			</map>
+		</property>
+		<property name="assembler">
+	      <bean class="org.springframework.jmx.export.assembler.InterfaceBasedMBeanInfoAssembler">
+	        <property name="managedInterfaces">
+	          <value>de.stefanheintz.log.jmxservice.LoggingConfig</value>
+	        </property>
+	      </bean>
+	    </property>
+	</bean>
+
+	<bean id="test" class="de.stefanheintz.log.jmxservice.TestImpl">
+		<property name="loggingTest" ref="testNoLogging"/>
+	</bean>
+	<bean id="testNoLogging" class="de.stefanheintz.log.jmxservice.NoLoggingTest"/>
+
+</beans>
+
+    <!-- 
+    <bean id="annoexporter" class="org.springframework.jmx.export.MBeanExporter">
+        <property name="assembler" ref="assembler"/>
+        <property name="namingStrategy" ref="namingStrategy"/>
+        <property name="autodetect" value="true"/>
+    </bean>
+    
+    <bean id="jmxAttributeSource"
+          class="org.springframework.jmx.export.annotation.AnnotationJmxAttributeSource"/>
+
+    // will create management interface using annotation metadata
+    <bean id="assembler"
+          class="org.springframework.jmx.export.assembler.MetadataMBeanInfoAssembler">
+        <property name="attributeSource" ref="jmxAttributeSource"/>
+    </bean>
+
+    //will pick up the ObjectName from the annotation
+    <bean id="namingStrategy"
+          class="org.springframework.jmx.export.naming.MetadataNamingStrategy">
+        <property name="attributeSource" ref="jmxAttributeSource"/>
+    </bean>
+    -->
+
+<!-- Exposes the HierarchyDynamicMBean of log4j framework
+	<bean id="exporter" class="org.springframework.jmx.export.MBeanExporter">
+        <property name="registrationBehaviorName" value="REGISTRATION_IGNORE_EXISTING"/>
+        <property name="beans">
+          <map>
+              <entry key="log4j:hiearchy=default" value-ref="hierarchyDynamicMBean"/>
+          </map>
+        </property>
+    </bean>
+  
+    <bean id="hierarchyDynamicMBean" class="org.apache.log4j.jmx.HierarchyDynamicMBean"/>
+-->
