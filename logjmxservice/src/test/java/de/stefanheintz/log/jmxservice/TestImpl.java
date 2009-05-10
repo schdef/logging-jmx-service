@@ -21,13 +21,6 @@ public class TestImpl implements Test {
 
 	private static final Logger logger = Logger.getLogger(TestImpl.class);
 	
-	private NoLoggingTest loggingTest;
-
-	public void setLoggingTest(NoLoggingTest loggingTest) {
-		this.loggingTest = loggingTest;
-	}
-
-
 	public void logAllLogĹevels() {
 		while (true) {
 			try {
@@ -42,8 +35,6 @@ public class TestImpl implements Test {
 			logger.info("This is the INFO logging");
 			logger.error("This is the ERROR logging");		
 			logger.fatal("This is the FATAL logging");
-			
-			loggingTest.methodWithNoLogging();
 		}
 	}
 

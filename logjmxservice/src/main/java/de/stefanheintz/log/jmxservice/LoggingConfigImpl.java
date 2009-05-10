@@ -23,14 +23,8 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 
-import javax.management.ListenerNotFoundException;
-import javax.management.MBeanNotificationInfo;
 import javax.management.Notification;
-import javax.management.NotificationBroadcasterSupport;
-import javax.management.NotificationFilter;
-import javax.management.NotificationListener;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
@@ -101,7 +95,12 @@ public class LoggingConfigImpl implements LoggingConfig, NotificationPublisherAw
 		String message = level.toString() + " for '" + target + "'";
 		Logger existingLogger = LogManager.exists(target);
 		if(existingLogger != null) {
-			message = "from " + existingLogger.getLevel().toString() + " to " + message; 
+			Level currentLevel = existingLogger.getLevel();
+			if(currentLevel == null) {
+				message = "initial to " + message;
+			} else {
+				message = "from " + currentLevel.toString() + " to " + message;
+			}
 		}
 			 
 		LogManager.getLogger(target).setLevel(level);

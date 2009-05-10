@@ -22,10 +22,7 @@
 	    </property>
 	</bean>
 
-	<bean id="test" class="de.stefanheintz.log.jmxservice.TestImpl">
-		<property name="loggingTest" ref="testNoLogging"/>
-	</bean>
-	<bean id="testNoLogging" class="de.stefanheintz.log.jmxservice.NoLoggingTest"/>
+	<bean id="test" class="de.stefanheintz.log.jmxservice.TestImpl"/>
 
 </beans>
 
