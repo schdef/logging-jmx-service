@@ -121,15 +121,13 @@ public class LoggingConfigImpl implements LoggingConfig, NotificationPublisherAw
 	}
 
 	public void resetConfiguration() {
-		
-		
 		ClassLoader cl = getClass().getClassLoader();
 		LogManager.resetConfiguration();
 		URL log4jprops = cl.getResource("log4j.properties");
 		if (log4jprops != null) {
 			PropertyConfigurator.configure(log4jprops);
+			sendNotification(NotificationType.RESET_CONFIGURATION , "used file: " + log4jprops.getFile());
 		}
-		sendNotification(NotificationType.RESET_CONFIGURATION , "used file: " + log4jprops.getFile());
 	}
 
 	public String printLog4jConfig() {
@@ -137,9 +135,6 @@ public class LoggingConfigImpl implements LoggingConfig, NotificationPublisherAw
 		PrintWriter pw = new PrintWriter(sw);
 		PropertyPrinter pp = new PropertyPrinter(pw);
 		pp.print(pw);
-		// System.out.println(sw.toString());
 		return sw.toString();
 	}
-
-
 }
