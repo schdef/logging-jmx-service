@@ -26,7 +26,7 @@ All functionalities are grouped in the interface http://code.google.com/p/loggin
    * reload the *log4j.properties* settings from classpath
 
 Short demonstration: 
-<iframe width="425" height="344" src="https://www.youtube.com/embed/03tIigdKSFM" frameborder="0" allowfullscreen></iframe>
+https://www.youtube.com/watch?v=03tIigdKSFM
 
 More details are available at the [Tutorial] page.
 
